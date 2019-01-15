@@ -25,12 +25,15 @@ class Computer {
         ir.setValue(0, 16);
         cc.setValue(0, 3);
 
-        //Add some interesting data in registers
+        //Add some interesting data in registers.
         for (int i = 0; i < 8; i++) {
+            reg[i] = new BitString();
             reg[i].setValue(i, 16);
         }
 
+        //Initialize an empty memory array.
         for (int i = 0; i < MAXMEM; i++) {
+            mem[i] = new BitString();
             mem[i].setValue(0, 16);
         }
     }
@@ -90,28 +93,37 @@ class Computer {
         System.out.print("\n");
 
         for (int r = 0; r < 8; r++) {
-            System.out.print("R" + r);
+            System.out.print("R" + r + " ");
             reg[r].display(true);
-            if (r % 3 == 2) {
-                System.out.print("\n");
-            }
-            else {
-                System.out.print("   ");
-            }
+            compDisplayFormatter(r);
+//            if (r % 3 == 2) {
+//                System.out.print("\n");
+//            }
+//            else {
+//                System.out.print("   ");
+//            }
         }
-        System.out.print("\n");
+        System.out.print("\n\n");
 
         for (int m = 0; m < MAXMEM; m++) {
-            System.out.printf("%3d", m);
+            System.out.printf("%-3d", m);
             mem[m].display(true);
 
-            if (m % 3 == 2) {
-                System.out.print("\n");
-            } else {
-                System.out.print("   ");
-            }
+            compDisplayFormatter(m);
+//            if (m % 3 == 2) {
+//                System.out.print("\n");
+//            } else {
+//                System.out.print("   ");
+//            }
         }
         System.out.print("\n");
+    }
+    void compDisplayFormatter(int x)  {
+        if (x % 3 == 2) {
+            System.out.print("\n");
+        } else {
+            System.out.print("   ");
+        }
     }
 
 }

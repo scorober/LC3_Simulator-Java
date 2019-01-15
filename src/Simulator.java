@@ -40,18 +40,21 @@ public class Simulator {
 //        comp.COMP_Display();
 
         bitStringTest();
+        comp.COMP_Init();
+        comp.COMP_Display();
 
     }
 
 
     static void bitStringTest() {
+
         BitString bstr = new BitString();
         BitString bstr1 = new BitString();
         BitString bstr2 = new BitString();
-        BitString bstr3 = new BitString();
-        BitString bstr4 = new BitString();
+        BitString bstr3;
+        BitString bstr4;
 
-        int testValues[] = {255, -255, -83, 83};
+        int[] testValues = {255, -255, -83, 83};
 
         for (int i = 0; i < 4; i++) {
             bstr.setValueTwosComp(testValues[i], 16);
@@ -70,7 +73,15 @@ public class Simulator {
         System.out.println("Length1 = " + bstr1.getLength());
         System.out.println("Length2 = " + bstr2.getLength());
 
-//        bstr3 = append(bstr1, bstr2);
+        bstr3 = bstr1.append(bstr2);
+        System.out.println("Length3 = " + bstr3.getLength());
+        bstr3.display(true);
+        System.out.println();
+
+        bstr4 = bstr3.getSubString(4, 8);
+        System.out.println("Length4 = " + bstr4.getLength());
+        bstr4.display(true);
+        System.out.println();
 
     }
 

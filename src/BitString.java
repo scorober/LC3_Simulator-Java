@@ -62,7 +62,7 @@ class BitString {
     /* is size.  The value is n. */
     void setValue(int n, int size) {
         int i;
-        if (size < MAXBITS) {
+        if (size > MAXBITS) {
             return;
         }
         length = size;
@@ -136,19 +136,24 @@ class BitString {
     /* bit strings are not changed. */
 
     //TODO return BitString or use 3 parameters
-    BitString append(BitString bstr1, BitString bstr2) {
+
+    /**
+     * Returns a new bitstring equal to the callee bitstring appended with the passed bitstring.
+     * @param bstr The bitstring to be appended.
+     * @return A new bitstring .
+     */
+    BitString append(BitString bstr) {
         BitString result = new BitString();
         int d = 0;
-        for (int i = 0; i < bstr1.length; i++) {
-            result.bits[d] = bstr1.bits[i];
+        for (int i = 0; i < this.length; i++) {
+            result.bits[d] = this.bits[i];
             d++;
         }
-        for (int i = 0; i <bstr2.length; i++) {
-            result.bits[d] = bstr1.bits[i];
+        for (int i = 0; i < bstr.length; i++) {
+            result.bits[d] = bstr.bits[i];
             d++;
         }
-        result.length = bstr1.length + bstr2.length;
-
+        result.length = this.length + bstr.length;
         return result;
     }
 
